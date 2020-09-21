@@ -4,7 +4,8 @@
   "description": "Restaurante con pedidos y platos",
   "main": "./src/index.js",
   "scripts": {
-    "start": "nodemon ./src/index.js"
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
   },
   "author": "Zafra",
   "license": "ISC",
