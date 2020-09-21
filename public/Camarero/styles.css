@@ -1,0 +1,23 @@
+body {
+    text-align: center;
+}
+
+#modal{
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    background : rgba(0, 0, 0, 0.5);
+}
+
+#modal .contenido{
+    display: block;
+    height: 50%;
+    width: 70%;
+    position: relative;
+    margin: 100px auto;
+    border: solid 1px grey;
+    border-radius: 5px;
+    background: white;
+}
