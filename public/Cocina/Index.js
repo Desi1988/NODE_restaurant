@@ -1,12 +1,31 @@
 function leerPedidos() {
-  fetch("/pedidos")
+
+  const userToken = localStorage.getItem("userToken")
+  if(!userToken)
+  {
+    return window.location.href = "/Usuarios/login.html";
+  }
+
+  fetch("/pedidos",{
+    headers: {
+      "Authorization": "Bearer " + userToken
+    }
+  })
     .then((respuesta) => {
-      return respuesta.json();
+      if(respuesta.status != 200)
+      {
+        window.location.href = "/Usuarios/login.html";
+      }
+      else{
+        return respuesta.json();
+      }
     })
     .then((pedidos) => {
       pintarPedidos(pedidos);
     })
-    .catch();
+    .catch(error => {
+      window.location.href = "/Usuarios/login.html";
+    });
 }
 
 

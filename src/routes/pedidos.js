@@ -1,13 +1,13 @@
 const express = require('express');
 const Pedido = require('../models/Pedido');
+const authenticateJWT = require('../middlewares/autentication');
 
 const pedidosRouter = express.Router();
 
-pedidosRouter.post('/',  (req, res) => {
+pedidosRouter.post('/', authenticateJWT, (req, res) => {
     const mesa = req.body.mesa;
     const comanda = req.body.comanda;
-    const camarero = req.body.camarero;
-    const fecha = req.body.fecha;
+    const camarero = req.user.username;
     const estaListo = req.body.estaListo;
 
     const pedido = new Pedido()
@@ -27,7 +27,7 @@ pedidosRouter.post('/',  (req, res) => {
         })
 });
 
-pedidosRouter.get('/', (req, res) => {
+pedidosRouter.get('/', authenticateJWT, (req, res) => {
     Pedido.find({}, {__v: 0, createdAt: 0, updatedAt: 0})
         .populate('comanda')
         .exec((err, pedidos) => {
